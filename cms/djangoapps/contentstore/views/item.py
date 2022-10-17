@@ -996,6 +996,10 @@ def _delete_item(usage_key, user):
             course.tabs = [tab for tab in existing_tabs if tab.get('url_slug') != usage_key.block_id]
             store.update_item(course, user.id)
 
+        to_delete = store.get_item(usage_key)
+        if hasattr(to_delete, 'studio_post_delete'):
+            to_delete.studio_post_delete()
+
         # Delete user bookmarks
         bookmarks_api.delete_bookmarks(usage_key)
         store.delete_item(usage_key, user.id)
