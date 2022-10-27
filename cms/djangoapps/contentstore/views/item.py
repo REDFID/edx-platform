@@ -968,9 +968,6 @@ def _duplicate_item(parent_usage_key, duplicate_source_usage_key, user, display_
                 parent.children.append(dest_module.location)
             store.update_item(parent, user.id)
 
-        if hasattr(dest_module, 'iaa_duplicate') and dest_usage_key.block_type == "iaaxblock":
-            dest_module.iaa_duplicate(source_item)
-
         return dest_module.location
 
 
